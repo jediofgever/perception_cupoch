@@ -10,7 +10,7 @@ find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_ros REQUIRED)
 
 # 使用eigen from thirdparty
-# find_package(Eigen3 REQUIRED QUIET)
+find_package(Eigen3 REQUIRED)
 find_package(thrust REQUIRED QUIET)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
@@ -26,6 +26,7 @@ GA_CHECK_CUDA()
 include_directories(
         include
         ${CUPOCH_INCLUDE_DIRS}
+        ${EIGEN3_INCLUDE_DIR}
 )
 
 install(DIRECTORY include/${PROJECT_NAME}/
@@ -56,6 +57,7 @@ ament_target_dependencies(cupoch_conversions
         )
 target_include_directories(cupoch_conversions PRIVATE
         ${CUPOCH_INCLUDE_DIRS}
+        ${EIGEN3_INCLUDE_DIR}
         )
 target_link_directories(cupoch_conversions PRIVATE
         ${CUPOCH_LIBRARY_DIRS}
